@@ -1,0 +1,168 @@
+.create-modal-content {
+  background-color: var(--color-surface);
+  width: 100%;
+  max-width: 650px;
+  max-height: 95vh;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: popIn var(--transition-normal) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.create-modal-header {
+  padding: 2rem 2.5rem 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.create-modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+}
+
+.create-modal-header p {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.create-modal-form {
+  padding: 1.5rem 2.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.required {
+  color: #ef4444; /* red-500 */
+}
+
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.create-modal-form input[type="text"],
+.create-modal-form textarea,
+.create-modal-form select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+}
+
+.create-modal-form input[type="text"]:focus,
+.create-modal-form textarea:focus,
+.create-modal-form select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.create-modal-form textarea {
+  resize: vertical;
+}
+
+.visibility-toggle {
+  display: flex;
+  background-color: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: 0.25rem;
+  border: 1px solid var(--color-border);
+}
+
+.vis-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.vis-btn.active {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+}
+
+.create-modal-footer {
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.btn-secondary {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text);
+  background-color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-bg);
+}
+
+.btn-primary {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: white;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  
+  .create-modal-header,
+  .create-modal-form {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
