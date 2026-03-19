@@ -84,7 +84,7 @@ function App() {
           <Sparkles className="logo-icon" size={28} />
           <h1>PromptFlow</h1>
         </div>
-        <p className="subtitle">Expert-level AI prompts at your fingertips.</p>
+        <p className="subtitle">Scientific work & role prompting library.</p>
       </header>
 
       <main>
@@ -123,7 +123,7 @@ function App() {
         </div>
 
         {filteredPrompts.length > 0 ? (
-          <div className="prompts-grid">
+          <div className="prompts-list">
             {filteredPrompts.map((prompt) => (
               <PromptCard 
                 key={prompt.id} 

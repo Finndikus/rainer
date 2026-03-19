@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Copy, Check } from 'lucide-react';
+import { Copy, Check, Lock, Globe } from 'lucide-react';
 import './PromptCard.css';
 
 const PromptCard = ({ prompt, onClick }) => {
@@ -14,27 +14,35 @@ const PromptCard = ({ prompt, onClick }) => {
   };
 
   return (
-    <div className="prompt-card" onClick={() => onClick(prompt)}>
-      <div className="card-header">
-        <span className="category-badge">{prompt.category}</span>
-        <button 
-          className={`copy-button ${copied ? 'copied' : ''}`}
-          onClick={handleCopy}
-          title="Copy prompt"
-          aria-label="Copy prompt"
-        >
-          {copied ? <Check size={16} /> : <Copy size={16} />}
-          <span className="copy-tooltip">{copied ? 'Copied!' : 'Copy'}</span>
-        </button>
-      </div>
-      
-      <h3 className="card-title">{prompt.title}</h3>
-      <p className="card-description">{prompt.useCase}</p>
-      
-      <div className="card-body">
-        <div className="prompt-text-preview">
+    <div className="prompt-row" onClick={() => onClick(prompt)}>
+      <div className="prompt-row-main">
+        <div className="prompt-row-meta">
+          <span className="category-badge">{prompt.category}</span>
+          {prompt.visibility === 'private' && (
+            <span className="visibility-badge private"><Lock size={12} /> Private</span>
+          )}
+          {prompt.visibility === 'public' && (
+            <span className="visibility-badge public"><Globe size={12} /> Public</span>
+          )}
+        </div>
+        
+        <h3 className="prompt-row-title">{prompt.title}</h3>
+        <p className="prompt-row-desc">{prompt.useCase}</p>
+        
+        <div className="prompt-row-snippet">
           {prompt.promptText}
         </div>
+      </div>
+      
+      <div className="prompt-row-actions">
+        <button 
+          className={`copy-action-btn ${copied ? 'copied' : ''}`}
+          onClick={handleCopy}
+          aria-label="Copy prompt"
+        >
+          {copied ? <Check size={18} /> : <Copy size={18} />}
+          <span className="copy-label">{copied ? 'Copied!' : 'Copy'}</span>
+        </button>
       </div>
     </div>
   );

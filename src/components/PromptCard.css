@@ -1,28 +1,33 @@
-.prompt-card {
+.prompt-row {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: all var(--transition-normal);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  animation: popIn var(--transition-normal) both;
-}
-
-.prompt-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary-light);
-}
-
-.card-header {
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+  align-items: center;
+  gap: 2rem;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  animation: fadeIn var(--transition-normal) both;
+}
+
+.prompt-row:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+  transform: translateX(2px);
+}
+
+.prompt-row-main {
+  flex: 1;
+  min-width: 0; /* Ensures text truncation works within flex */
+}
+
+.prompt-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .category-badge {
@@ -32,92 +37,117 @@
   letter-spacing: 0.05em;
   color: var(--color-primary);
   background-color: var(--color-primary-light);
-  padding: 0.25rem 0.6rem;
+  padding: 0.2rem 0.6rem;
   border-radius: var(--radius-sm);
 }
 
-.copy-button {
-  color: var(--color-text-secondary);
-  padding: 0.4rem;
-  border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
-  position: relative;
+.visibility-badge {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: var(--color-bg);
-}
-
-.copy-button:hover {
-  color: var(--color-text);
-  background-color: var(--color-border);
-}
-
-.copy-button.copied {
-  color: var(--color-success);
-  background-color: rgba(16, 185, 129, 0.1);
-}
-
-.copy-tooltip {
-  position: absolute;
-  top: -30px;
-  right: 50%;
-  transform: translateX(50%);
-  background-color: var(--color-text);
-  color: white;
+  gap: 0.25rem;
   font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
   padding: 0.2rem 0.5rem;
   border-radius: var(--radius-sm);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity var(--transition-fast);
-  white-space: nowrap;
 }
 
-.copy-button:hover .copy-tooltip {
-  opacity: 1;
-  visibility: visible;
+.visibility-badge.private {
+  color: #d97706; /* amber-600 */
+  background-color: #fef3c7; /* amber-100 */
 }
 
-.card-title {
-  font-size: 1.25rem;
+.visibility-badge.public {
+  color: #059669; /* emerald-600 */
+  background-color: #d1fae5; /* emerald-100 */
+}
+
+.prompt-row-title {
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
   line-height: 1.3;
 }
 
-.card-description {
-  font-size: 0.9rem;
+.prompt-row-desc {
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
-  margin-bottom: 1.25rem;
-  line-height: 1.5;
+  margin-bottom: 0.75rem;
 }
 
-.card-body {
-  margin-top: auto;
-}
-
-.prompt-text-preview {
-  background-color: var(--color-bg);
-  padding: 1rem;
-  border-radius: var(--radius-md);
+.prompt-row-snippet {
   font-family: monospace;
   font-size: 0.85rem;
-  color: var(--color-text);
-  line-height: 1.5;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg);
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  
+  /* Text Truncation */
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  border: 1px solid var(--color-border);
 }
 
-/* Staggered animation for cards */
-.prompt-card:nth-child(1) { animation-delay: 50ms; }
-.prompt-card:nth-child(2) { animation-delay: 100ms; }
-.prompt-card:nth-child(3) { animation-delay: 150ms; }
-.prompt-card:nth-child(4) { animation-delay: 200ms; }
-.prompt-card:nth-child(5) { animation-delay: 250ms; }
-.prompt-card:nth-child(6) { animation-delay: 300ms; }
+.prompt-row-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.copy-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  min-width: 80px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.copy-action-btn:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+  background-color: var(--color-surface);
+}
+
+.copy-action-btn.copied {
+  color: var(--color-success);
+  border-color: var(--color-success);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+.copy-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+@media (max-width: 640px) {
+  .prompt-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.25rem;
+  }
+  
+  .copy-action-btn {
+    flex-direction: row;
+    padding: 0.6rem;
+  }
+}
+
+/* Staggered animation for list items */
+.prompt-row:nth-child(1) { animation-delay: 50ms; }
+.prompt-row:nth-child(2) { animation-delay: 100ms; }
+.prompt-row:nth-child(3) { animation-delay: 150ms; }
+.prompt-row:nth-child(4) { animation-delay: 200ms; }
+.prompt-row:nth-child(5) { animation-delay: 250ms; }
+.prompt-row:nth-child(6) { animation-delay: 300ms; }
